@@ -6,7 +6,12 @@
 
 QT       += core network
 
-TARGET = SMTPEmail
+DESTDIR = $$PWD/../Binary
+CONFIG(debug, debug|release){
+    TARGET = SMTPEmaild
+}else{
+    TARGET = SMTPEmail
+}
 
 # Build as an application
 #TEMPLATE = app
@@ -51,3 +56,6 @@ OTHER_FILES += \
     README.md
 
 FORMS +=
+
+DISTFILES += \
+    SmtpEmail.pri
