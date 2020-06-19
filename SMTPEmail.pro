@@ -6,11 +6,13 @@
 
 QT       += core network
 
-DESTDIR = $$PWD/../Binary
+CONFIG += debug-and-release
+
+DESTDIR = $$PWD/../SMTPEmail/
 CONFIG(debug, debug|release){
-    TARGET = SMTPEmaild
+    TARGET = lib/SMTPEmaild
 }else{
-    TARGET = SMTPEmail
+    TARGET = lib/SMTPEmail
 }
 
 # Build as an application
@@ -54,6 +56,14 @@ HEADERS  += \
 OTHER_FILES += \
     LICENSE \
     README.md
+
+headers.files=$$HEADERS
+headers.path=$$DESTDIR/include
+INSTALLS+=headers
+
+otherfiles.files=$$OTHER_FILES
+otherfiles.path=$$DESTDIR/
+INSTALLS+=otherfiles
 
 FORMS +=
 
