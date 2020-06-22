@@ -6,7 +6,14 @@
 
 QT       += core network
 
-TARGET = SMTPEmail
+CONFIG += debug-and-release
+
+DESTDIR = $$PWD/../SMTPEmail/
+CONFIG(debug, debug|release){
+    TARGET = lib/SMTPEmaild
+}else{
+    TARGET = lib/SMTPEmail
+}
 
 # Build as an application
 #TEMPLATE = app
@@ -50,4 +57,15 @@ OTHER_FILES += \
     LICENSE \
     README.md
 
+headers.files=$$HEADERS
+headers.path=$$DESTDIR/include
+INSTALLS+=headers
+
+otherfiles.files=$$OTHER_FILES
+otherfiles.path=$$DESTDIR/
+INSTALLS+=otherfiles
+
 FORMS +=
+
+DISTFILES += \
+    SmtpEmail.pri
